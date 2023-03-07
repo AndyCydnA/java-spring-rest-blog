@@ -17,6 +17,14 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // Add versioning. Each time a record is updated, hibernate will automatically increment the version.
+    @Version
+    private Long version;
+
+    // ensure title cannot be null and control the size
+    @NotNull
+    @Size(min = 4, max = 100)
     private String title;
     @Column(length=1000000)
     @Lob
@@ -25,7 +33,7 @@ public class Post {
     @CreationTimestamp
     private Date date;
 
-    // Add new Author property that has a many to one relationship between posts and author. Generate getters and
+    // Add new Author property that has a many-to-one relationship between posts and author. Generate getters and
     // setters.
     @ManyToOne(fetch = FetchType.EAGER)
     private Author author;

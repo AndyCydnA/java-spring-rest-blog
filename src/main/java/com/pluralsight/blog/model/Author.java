@@ -16,6 +16,11 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // Add versioning. Each time a record is updated, hibernate will automatically increment the version.
+    @Version
+    private Long version;
+
     private String firstname;
     private String lastname;
 
