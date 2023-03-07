@@ -18,11 +18,22 @@ public class Author {
     private Long id;
     private String firstname;
     private String lastname;
+
+    //@JsonIgnore is used to hide these fields from the output of our requests.
+    // Now at http://localhost:8080/authors, these fields are hidden
+    @JsonIgnore
     private String username;
+    @JsonIgnore
     private String password;
+
+    // New variable to store the posts related to an author - hence one to many annotation
+    @OneToMany
+    private List<Post> posts;
 
     public Author() {
         super();
+        // initialise the posts variable to an empty array list
+        posts = new ArrayList<>();
     }
 
     public Author(String username, String firstname, String lastname, String password) {
@@ -85,10 +96,10 @@ public class Author {
     }
 
     public List<Post> getPosts() {
-        return null;
+        return posts;
     }
 
     public void addPost(Post post) {
-        return;
+        posts.add(post);
     }
 }

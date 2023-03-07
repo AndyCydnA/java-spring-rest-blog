@@ -25,6 +25,11 @@ public class Post {
     @CreationTimestamp
     private Date date;
 
+    // Add new Author property that has a many to one relationship between posts and author. Generate getters and
+    // setters.
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Author author;
+
     public Post() {
         super();
     }
@@ -70,6 +75,14 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
